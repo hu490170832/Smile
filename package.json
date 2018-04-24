@@ -10,14 +10,26 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "cube-ui": "^1.8.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vant": "^1.0.8",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
+  },
+  "compileDependencies": ["cube-ui"],
+  "transformModules": {
+    "cube-ui": {
+      "transform": "cube-ui/src/modules/${member}",
+      "kebabCase": true
+    }
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.1",
+    "babel-plugin-import": "^1.7.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-plugin-transform-vue-jsx": "^3.5.0",
@@ -27,6 +39,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^3.0.0",
+    "fastclick": "^1.0.6",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
@@ -36,6 +49,7 @@
     "portfinder": "^1.0.13",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
+    "postcss-pxtorem": "^4.0.1",
     "postcss-url": "^7.2.1",
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
@@ -45,6 +59,10 @@
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.1.1",
+    "webpack-post-compile-plugin": "^0.2.1",
+    "webpack-transform-modules-plugin": "^0.3.1",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",

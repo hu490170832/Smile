@@ -3,6 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import fastClick from 'fastclick'
+fastClick.attach(document.body)
+
+import '@/assets/js/flexible'
+import '@/assets/css/index.stylus'
+
+
 
 Vue.config.productionTip = false
 
