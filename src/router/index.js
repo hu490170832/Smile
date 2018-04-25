@@ -10,6 +10,21 @@ export default new Router({
       path: '/',
       name: 'shoppingMall',
       component: shoppingMall
+    },
+    {
+      path: '/category',
+      name: 'shoppingMall',
+      component: shoppingMall
+    },
+    {
+      path: '/cart',
+      name: 'shoppingMall',
+      component: shoppingMall
+    },
+    {
+      path: '/personal',
+      name: 'shoppingMall',
+      component: shoppingMall
     }
   ]
 })

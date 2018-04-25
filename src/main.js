@@ -9,7 +9,13 @@ fastClick.attach(document.body)
 import '@/assets/js/flexible'
 import '@/assets/css/index.stylus'
 
-
+import {
+  /* eslint-disable no-unused-vars */
+  Style,
+  Button,
+  Slide
+} from 'cube-ui'
+Vue.use(Button).use(Slide)
 
 Vue.config.productionTip = false
 

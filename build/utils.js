@@ -15,7 +15,8 @@ exports.assetsPath = function (_path) {
 exports.cssLoaders = function (options) {
   options = options || {}
   const stylusOptions = {
-    'resolve url': true
+    'resolve url': true,
+    import: [path.resolve(__dirname, '../src/assets/css/theme.styl')]
   }
 
   const cssLoader = {
