@@ -1,6 +1,6 @@
 <template>
     <div class="tab">
-        <router-link to='/' class="item">
+        <router-link to='/shoppingMall' class="item">
             <div class="icon iconfont">&#xe630;</div>
             <div class="desc">商场</div>
         </router-link>
@@ -27,12 +27,14 @@
 
 <style lang='stylus' scoped>
     .tab
+        background #fff
         height 50px
         display flex
         border-top 1px solid #d7d7d7
-        position fixed
+        position absolute
         bottom 0
         width 100%
+        z-index 999
         .item
             flex 1
             display flex
@@ -41,7 +43,7 @@
             flex-direction column
             color #7d868d
             font-size 14px
-            &.router-link-exact-active
+            &.router-link-active
                 color #d32e7d
             .icon
                 font-size 22px

@@ -13,9 +13,11 @@ import {
   /* eslint-disable no-unused-vars */
   Style,
   Button,
-  Slide
+  Switch ,
+  Slide,
+  Scroll
 } from 'cube-ui'
-Vue.use(Button).use(Slide)
+Vue.use(Switch).use(Slide).use(Button).use(Scroll)
 
 Vue.config.productionTip = false
 

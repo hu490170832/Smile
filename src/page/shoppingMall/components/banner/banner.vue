@@ -3,7 +3,7 @@
         <cube-slide ref="slide" :data="items">
             <cube-slide-item v-for="(item, index) in items" :key="index" @click.native="clickHandler(item, index)">
                 <a href="">
-                    <img :src="item.image">
+                    <img class="img" :src="item.image">
                 </a>
             </cube-slide-item>
             <template slot="dots" slot-scope="props">

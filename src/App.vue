@@ -1,22 +1,22 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div id="app" @touchmove.prevent>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
     <tab />
   </div>
 </template>
 
 <script>
-import tab from './common/components/tab'
+import tab from './common/components/tab/tab'
 export default {
   name: 'App',
   components:{
-    tab
+    tab,
   }
 }
 </script>
 
 <style lang='stylus'>
-  #app
-    padding-bottom 50px
   
 </style>

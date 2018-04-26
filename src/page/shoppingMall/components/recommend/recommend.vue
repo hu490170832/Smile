@@ -23,6 +23,27 @@
                     <span class="del-price">￥9.50</span>
                 </div>
             </div>
+            <div class="item">
+                <img src="./images/recommend-3.jpg" alt="">
+                <div class="price">
+                    <span class="real-price">￥9.50</span>
+                    <span class="del-price">￥9.50</span>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./images/recommend-3.jpg" alt="">
+                <div class="price">
+                    <span class="real-price">￥9.50</span>
+                    <span class="del-price">￥9.50</span>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./images/recommend-3.jpg" alt="">
+                <div class="price">
+                    <span class="real-price">￥9.50</span>
+                    <span class="del-price">￥9.50</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -45,8 +66,9 @@
             padding-left 8px
         .recommend-list
             display flex
+            flex-wrap wrap
             .item
-                flex 1
+                width 33.333%
                 box-sizing border-box
                 display flex
                 flex-direction column
