@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
+
 fastClick.attach(document.body)
 
 import '@/assets/js/flexible'
@@ -18,6 +19,13 @@ import {
   Scroll
 } from 'cube-ui'
 Vue.use(Switch).use(Slide).use(Button).use(Scroll)
+
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+ 
+// require styles
+import 'swiper/dist/css/swiper.css'
+ 
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 Vue.config.productionTip = false
 

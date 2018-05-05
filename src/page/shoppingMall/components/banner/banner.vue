@@ -1,13 +1,13 @@
 <template>
     <div class="slider">
-        <cube-slide ref="slide" :data="items">
-            <cube-slide-item v-for="(item, index) in items" :key="index" @click.native="clickHandler(item, index)">
+        <cube-slide ref="slide" :data="data">
+            <cube-slide-item v-for="(item, index) in data" :key="index" @click.native="clickHandler(item, index)">
                 <a href="">
                     <img class="img" :src="item.image">
                 </a>
             </cube-slide-item>
             <template slot="dots" slot-scope="props">
-                <span class="my-dot" :class="{active: props.current === index}" v-for="(item, index) in props.dots">{{index + 1}}</span>
+                <span class="my-dot" :class="{active: props.current === index}" :key="index" v-for="(item, index) in props.dots">{{index + 1}}</span>
             </template>
         </cube-slide>
     </div>
@@ -15,28 +15,7 @@
 
 <script>
     export default {
-        data() {
-            return {
-                items: [{
-                        url: 'images/1.jpg',
-                        image: require('./images/1.jpg')
-                    },
-                    {
-                        url: 'images/2.jpg',
-                        image: require('./images/2.jpg')
-                    },
-                    {
-                        url: 'images/3.jpg',
-                        image: require('./images/3.jpg')
-                    }
-                ]
-            }
-        },
-        methods: {
-            imgonload() {
-                console.log(1)
-            }
-        }
+        props: ['data'],
     }
 </script>
 

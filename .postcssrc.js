@@ -9,7 +9,7 @@ module.exports = {
     "postcss-pxtorem" : {
       rootValue: 37.5,
       unitPrecision: 5,
-      propList: ['*','!box-shadow'],
+      propList: ['*','!box-shadow','!border-right','!border-bottom'],
       selectorBlackList: [],
       replace: true,
       mediaQuery: false,
