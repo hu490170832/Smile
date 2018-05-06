@@ -1,31 +1,41 @@
 <template>
     <div class="personal-header">
-        <div class="left">
-            <img src="./icon.png" alt="">
-            <div class="desc">普通</div>
-        </div>
-        <div class="level">
-            <div class="my-count">
-                我的福豆:29 <img src="./icon-2.png" alt="">
+        <div class="alreadyLogin" v-if="longinFlag">
+            <div class="left">
+                <img src="./icon.png" alt="">
+                <div class="desc">普通</div>
             </div>
-            <div class="level-count">
-                <span class="item">1</span>
-                <span class="item">2</span>
-                <span class="item">3</span>
-                <span class="item">4</span>
-                <span class="item">5</span>
-                
+            <div class="level">
+                <div class="my-count">
+                    我的福豆:29 <img src="./icon-2.png" alt="">
+                </div>
+                <div class="level-count">
+                    <span class="item">1</span>
+                    <span class="item">2</span>
+                    <span class="item">3</span>
+                    <span class="item">4</span>
+                    <span class="item">5</span>
+                    
+                </div>
             </div>
-        </div>
-        <div class="right">
+            <div class="right">
 
+            </div>
+        </div>
+        <div class="noLogin" v-else>
+            <div class="headerImg iconfont">&#xe7e5;</div>
+            <div class="longinbtn">登录 / 注册></div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        
+        data() {
+            return {
+                longinFlag: false
+            }
+        }
     }
 </script>
 
@@ -95,6 +105,23 @@
                         box-shadow 0px 2px 1px  #751222 inset
                     &:nth-last-of-type(1):after
                         display none
-
+        .noLogin
+            display flex
+            align-items center
+            height 110px
+            padding 0 14px
+            background linear-gradient(top, #d32d7f,#cd2b77)
+            .headerImg
+                width 60px
+                text-align center
+                font-size 40px
+                height 60px
+                border-radius 50%
+                background #efe8eb
+                color #8a8a8a
+                line-height 60px
+                margin-right 10px
+            .longinbtn
+                color #fff
                     
 </style>

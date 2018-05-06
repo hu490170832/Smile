@@ -1,36 +1,192 @@
 <template>
     <div class="category">
         <search />
-        <top-bar />
-        <switch-bar />
-        <transition :name="transitionName" class="view-container">
-            <keep-alive>
-                <router-view/>
-            </keep-alive>
-        </transition>
+        <div class="top-bar">
+            <div class="tab-list" ref="category">
+                <div class="item" 
+                    @click="categoryClick" 
+                    :class="{active: item.mallCategoryId==1}"
+                     v-for="item in category" 
+                    :key="item.mallCategoryId"
+                    :mallCategoryId = 'item.mallCategoryId'
+                >{{item.mallCategoryName}}</div>
+            </div>
+        </div>
+        <div class="switch">
+            <div class="sell-count">
+                <div class="text">销量:</div>
+                <cube-switch v-model="salesFlag" class="switch-btn">
+                </cube-switch>
+            </div>
+            <div class="price">
+                <div class="text">价格:</div>
+                <span>高</span>
+                <cube-switch v-model="priceFlag" class="switch-btn">
+                </cube-switch>
+                <span>低</span>
+            </div>
+        </div>
+        <div class="content" v-if='hasData'>
+            <div class="sidebar" ref="sidebar">
+                <div @click="choosebxMallSubDto" ref='all' class="item active">全部</div>
+                <div
+                    @click="choosebxMallSubDto" 
+                    v-for="item in sidebarData" 
+                    :key="item.mallSubId"
+                    :mallSubId='item.mallSubId' 
+                    class="item"
+                >{{item.mallSubName}}</div>
+            </div>
+            <cube-scroll ref="scroll" :data='goodsList' class="fruits-list" :class='{noData:nogoodsFlag}'>
+                <div class="nogoods" v-if='nogoodsFlag'>
+                    <img src="./images/2@2x.gif" alt="">
+                </div>
+                <div class="scroll-container"  v-else>
+                    <div class="item" v-for="item in goodsList" :key="item.goodsId">
+                        <img class="fruit-img" v-lazy="item.image" alt="">
+                        <div class="name">{{item.goodsName}}</div>
+                        <div class="price">
+                            <span class="real">￥{{item.presentPrice}}</span>
+                            <span class="del">￥{{item.oriPrice}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </cube-scroll>
+        </div>
     </div>
 </template>
 
 <script>
     import Search from '@/common/components/search/search'
-    import topBar from './components/top-bar/top-bar.vue'
-    import switchBar from './components/switch-bar/switch-bar'
+    import {getCategory,getMallGoods} from '@/api/category'
+     import {
+        SingleSelection,
+        addClass,
+        hasClass
+    } from '@/common/js/dom.js'
     export default {
         data() {
             return {
-                transitionName : 'slide-left'
+                transitionName : 'slide-left',
+                hasData: false,
+                category: [],
+                sidebarData: [],
+                goodsList:[],
+                defaultParams :{
+                    categoryId:1,
+                    page:1,
+                    flag:22
+                },
+                salesFlag: false,
+                priceFlag: false,
+                nogoodsFlag: false
+            }
+        },
+        created() {
+            this.showToast()
+            getCategory().then((res)=>{
+                this.category = res.data
+                this.sidebarData = this.category[0].bxMallSubDto
+                this.hasData = true
+                console.log(res.data)
+            })
+            this._getMallGoods()
+        },
+        methods: {
+            showToast() {
+                this.toast = this.$createToast({
+                    txt: 'Loading...',
+                    mask: true
+                })
+                this.toast.show()
+            },
+            _getMallGoods(params) {
+                this.showToast()
+                Object.assign(this.defaultParams,params)
+                console.log(this.defaultParams)
+                getMallGoods(this.defaultParams).then((res)=>{
+                    if(!res.data){
+                        this.nogoodsFlag = true
+                        this.toast.hide()
+                        return
+                    }
+                    this.goodsList = res.data
+                    this.toast.hide()
+                    this.nogoodsFlag = false
+                    console.log(this.goodsList)
+                })
+            },
+            categoryClick(e) {
+                var el = e.target
+                if(hasClass(el,'active')){
+                    return
+                }
+                this.$refs.all.addClass ='active'   //全部按钮默认选中
+                var siblings = this.$refs.category.children
+                SingleSelection(el, siblings, 'active')
+                var mallCategoryId = el.getAttribute('mallCategoryId')
+                for(let i=0;i<this.category.length;i++) {
+                    if(this.category[i].mallCategoryId == mallCategoryId) {
+                        this.sidebarData = this.category[i].bxMallSubDto
+                    }
+                }
+                this.mallCategoryId = mallCategoryId
+                this._getMallGoods({
+                    categoryId:mallCategoryId,
+                    categorySubId:null
+                })
+            },
+            choosebxMallSubDto(e) {
+                var el = e.target
+                if(hasClass(el,'active') ){
+                    return
+                }
+                var siblings = this.$refs.sidebar.children
+                SingleSelection(el, siblings, 'active') //单选
+                var categorySubId = el.getAttribute('mallSubId')
+                this._getMallGoods({
+                    categorySubId
+                })
             }
         },
         components: {
-            topBar,
-            switchBar,
             Search
         },
         watch:{
             $route(newRoute,oldRoute) {
-                console.log(newRoute.meta.index)
-                console.log(oldRoute.meta.index)
                 this.transitionName = newRoute.meta.index<oldRoute.meta.index ? 'slide-left' : 'slide-right'
+            },
+            salesFlag(newValue) {
+                if(newValue) {
+                    Object.assign(this.defaultParams,{
+                        flag:31
+                    })
+                    this.priceFlag = false
+                    this._getMallGoods()
+                }
+                if(!this.priceFlag&&!newValue) {
+                    Object.assign(this.defaultParams,{
+                        flag:22
+                    })
+                    this._getMallGoods()
+                }
+
+            },
+            priceFlag(newValue) {
+                if(newValue) {
+                    Object.assign(this.defaultParams,{
+                        flag:21
+                    })
+                    this.salesFlag = false
+                    this._getMallGoods()
+                }
+                if(!this.salesFlag&&!newValue) {
+                    Object.assign(this.defaultParams,{
+                        flag:22
+                    })
+                    this._getMallGoods()
+                }
             }
         }
     }
@@ -44,6 +200,109 @@
         right 0
         bottom 50px
         overflow hidden
+        .tab-list
+            display flex
+            height 45px
+            .item
+                width 20%
+                text-align center
+                line-height 45px
+                font-size 14px
+                box-sizing border-box
+                border-bottom 1px solid #ccc
+                &.active
+                    border-bottom 2px solid #e2595b
+        .switch
+            display flex
+            justify-content center
+            height 38px
+            line-height 38px
+            border-bottom 1px solid #eee
+            >>>.cube-switch-ui
+                width 41px
+                height 22px
+                &::after
+                    border-radius 50%
+                    width 22px
+                    height 22px
+            .sell-count
+                display flex
+            .price
+                display flex
+                margin-left 20px
+                span 
+                    margin 0 3px
+            .text
+                margin-right 6px
+        .content
+            display flex
+            position absolute
+            top 127px
+            bottom 0
+            width 100%
+            .sidebar
+                width 22%
+                border-right 1px solid #eaeaea
+                height 100%
+                font-size 14px
+                .item
+                    border-bottom 1px solid #eaeaea
+                    height 40px
+                    line-height 40px
+                    text-align center
+                    &.active
+                        background #eee
+            .fruits-list
+                background #eee
+                padding-top 5px
+                padding 5px
+                position relative
+                flex 1
+                .nogoods
+                    img
+                        width 100%
+                        margin 0 auto
+                        display block
+                        margin-top 100px
+                .scroll-container
+                    display flex
+                    flex-wrap wrap
+                .item
+                    background #fff
+                    display flex
+                    align-items center
+                    flex-direction column
+                    width 48%
+                    padding-bottom 30px
+                    padding-top 15px
+                    box-sizing border-box
+                    margin-bottom 10px
+                    height 200px
+                    &:nth-of-type(2n-1)
+                        margin-right 10px
+                    .fruit-img
+                        width 80%
+                    .name
+                        margin-top 5px
+                        padding 0 5px
+                        color #f56a6d
+                        font-size 14px
+                        text-align center
+                    .price
+                        margin-top 10px
+                        .real
+                            color #d0644a
+                            font-size 16px
+                        .del
+                            color #989898
+                            font-size 14px
+                            text-decoration line-through
+                &.noData
+                    background #fff
+
+
+
+
     .view-container
         position relative
     .slide-left-enter-active,.slide-left-leave-active 

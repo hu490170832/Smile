@@ -75,7 +75,7 @@
     };
 </script>
 
-<style lang='stylus'>
+<style lang='stylus' scoped>
 .recommend 
     background: #fff;
     margin-bottom: 20px;

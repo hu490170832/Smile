@@ -8,6 +8,7 @@
             <router-link tag="div" to='/category/cosmetics' class="item">个人护理</router-link>
         </div>
     </div>
+    
 </template>
 
 <script>

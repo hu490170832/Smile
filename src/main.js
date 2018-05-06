@@ -4,7 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
-
+import VueLazyload from 'vue-lazyload'
+ 
+Vue.use(VueLazyload)
 fastClick.attach(document.body)
 
 import '@/assets/js/flexible'
@@ -16,9 +18,12 @@ import {
   Button,
   Switch ,
   Slide,
-  Scroll
+  Scroll,
+  createAPI,
+  Toast
 } from 'cube-ui'
 Vue.use(Switch).use(Slide).use(Button).use(Scroll)
+createAPI(Vue, Toast, ['click'], true)
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
  

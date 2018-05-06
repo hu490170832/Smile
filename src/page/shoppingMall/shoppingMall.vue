@@ -30,11 +30,22 @@
             }
         },
         created() {
+            this.showToast()
             getIndexData().then((res)=>{
                 this.hasData = true
                 this.indexData = res.data
+                this.toast.hide()
                 console.log(res.data)
             })
+        },
+        methods: {
+            showToast() {
+                this.toast = this.$createToast({
+                    txt: 'Loading...',
+                    mask: true
+                })
+                this.toast.show()
+            }
         },
         components: {
             Banner,
