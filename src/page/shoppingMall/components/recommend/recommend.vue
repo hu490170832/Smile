@@ -9,6 +9,7 @@
                         <span class="real-price">￥{{item.price}}</span>
                         <span class="del-price">￥{{item.mallPrice}}</span>
                     </div>
+                    <div class="recommend-tips">推荐</div>
                 </swiper-slide>
             </swiper>
         </div>
@@ -28,7 +29,7 @@
                     <div class="desc">{{floorName.floor2}}</div>
                 </div>
                 <div class="floor-goods  clearfix">
-                    <img v-for="item in floor2" :key="item.goodsId" :src="item.image" alt="">
+                    <img v-for="item in floor2" :key="item.goodsId" v-lazy="item.image" alt="">
                 </div>
             </div>
             <div class="floor">
@@ -49,7 +50,7 @@
             <div class="goods-list">
                 <div v-for="item in hotGoods" :key="item.goodsId" class="item">
                     <div class="img">
-                        <img :src="item.image" alt="">
+                        <img v-lazy="item.image" alt="">
                     </div>
                     <div class="desc">{{item.name}}</div>
                     <div class="price">
@@ -88,6 +89,7 @@
     .recommend-list 
         display: flex;
         .item 
+            position relative
             width: 33.33%;
             box-sizing: border-box;
             display: flex;
@@ -109,6 +111,17 @@
                     font-size: 13px;
                     color: #ccc;
                     margin-top: 2px;
+            .recommend-tips
+                position absolute
+                right 0
+                background #de2c01
+                top 50%
+                transform translateY(-50)
+                color #fff
+                font-size 12px
+                padding 4px 12px
+                border-radius 12px 0 0 12px
+
     .floor-title
         display flex
         justify-content center
@@ -145,7 +158,9 @@
                 flex-direction column
                 align-items center
                 .img
+                    height 160px
                     padding 20px
+                    box-sizing border-box
                     img
                         width 80%
                 .desc

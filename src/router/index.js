@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import shoppingMall from '@/page/shoppingMall/shoppingMall'
+// import shoppingMall from '@/page/shoppingMall/shoppingMall'
 import Cart from '@/page/cart/cart'
 import Personal from '@/page/personal/personal'
 import category from '@/page/category/category'
@@ -16,21 +16,21 @@ export default new Router({
     {
       path: '/shoppingMall',
       name: 'shoppingMall',
-      component: shoppingMall
+      component: ()=>import('@/page/shoppingMall/shoppingMall')
     },
     {
       path: '/category',
-      component: category
+      component: ()=>import('@/page/category/category')
     },
     {
       path: '/cart',
       name: 'cart',
-      component: Cart
+      component: ()=>import('@/page/cart/cart')
     },
     {
       path: '/personal',
       name: 'Personal',
-      component: Personal
+      component: ()=>import('@/page/personal/personal')
     }
   ]
 })

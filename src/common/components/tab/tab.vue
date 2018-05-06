@@ -43,6 +43,8 @@
             flex-direction column
             color #7d868d
             font-size 14px
+            &:active
+                background rgba(0,0,0,.1)
             &.router-link-active
                 color #d32e7d
             .icon

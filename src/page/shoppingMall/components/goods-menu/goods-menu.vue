@@ -1,10 +1,10 @@
 <template>
     <div class="gooods-menu">
         <div class="menu-list">
-            <div v-for="item in goodsList" :key="item.mallCategoryId" class="item">
+            <router-link :to="'/category?mallCategoryId='+item.mallCategoryId" v-for="item in goodsList" :key="item.mallCategoryId" class="item">
                 <img :src="item.image" alt="">
                 <div class="title">{{item.mallCategoryName}}</div>
-            </div>
+            </router-link>
         </div>
         <div class="tips">
             <img :src="advertesPicture.PICTURE_ADDRESS" alt="">

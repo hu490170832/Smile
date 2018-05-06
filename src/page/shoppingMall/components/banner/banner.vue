@@ -1,8 +1,8 @@
 <template>
     <div class="slider">
-        <cube-slide ref="slide" :data="data">
-            <cube-slide-item v-for="(item, index) in data" :key="index" @click.native="clickHandler(item, index)">
-                <a href="">
+        <cube-slide ref="slide" :threshold='0.2' :data="data">
+            <cube-slide-item v-for="(item, index) in data" :key="index">
+                <a href="#">
                     <img class="img" :src="item.image">
                 </a>
             </cube-slide-item>

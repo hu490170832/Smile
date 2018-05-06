@@ -5,7 +5,7 @@
             <div class="tab-list" ref="category">
                 <div class="item" 
                     @click="categoryClick" 
-                    :class="{active: item.mallCategoryId==1}"
+                    :class="{active: item.mallCategoryId==categoryId}"
                      v-for="item in category" 
                     :key="item.mallCategoryId"
                     :mallCategoryId = 'item.mallCategoryId'
@@ -70,11 +70,12 @@
             return {
                 transitionName : 'slide-left',
                 hasData: false,
-                category: [],
+                category: [],   //类别
                 sidebarData: [],
                 goodsList:[],
+                categoryId: 1,
                 defaultParams :{
-                    categoryId:1,
+                    categoryId: 1,
                     page:1,
                     flag:22
                 },
@@ -89,7 +90,6 @@
                 this.category = res.data
                 this.sidebarData = this.category[0].bxMallSubDto
                 this.hasData = true
-                console.log(res.data)
             })
             this._getMallGoods()
         },
@@ -104,7 +104,6 @@
             _getMallGoods(params) {
                 this.showToast()
                 Object.assign(this.defaultParams,params)
-                console.log(this.defaultParams)
                 getMallGoods(this.defaultParams).then((res)=>{
                     if(!res.data){
                         this.nogoodsFlag = true
@@ -114,28 +113,12 @@
                     this.goodsList = res.data
                     this.toast.hide()
                     this.nogoodsFlag = false
-                    console.log(this.goodsList)
                 })
             },
             categoryClick(e) {
                 var el = e.target
-                if(hasClass(el,'active')){
-                    return
-                }
-                this.$refs.all.addClass ='active'   //全部按钮默认选中
-                var siblings = this.$refs.category.children
-                SingleSelection(el, siblings, 'active')
                 var mallCategoryId = el.getAttribute('mallCategoryId')
-                for(let i=0;i<this.category.length;i++) {
-                    if(this.category[i].mallCategoryId == mallCategoryId) {
-                        this.sidebarData = this.category[i].bxMallSubDto
-                    }
-                }
-                this.mallCategoryId = mallCategoryId
-                this._getMallGoods({
-                    categoryId:mallCategoryId,
-                    categorySubId:null
-                })
+                this.$router.push('/category?mallCategoryId='+mallCategoryId)
             },
             choosebxMallSubDto(e) {
                 var el = e.target
@@ -154,8 +137,23 @@
             Search
         },
         watch:{
-            $route(newRoute,oldRoute) {
-                this.transitionName = newRoute.meta.index<oldRoute.meta.index ? 'slide-left' : 'slide-right'
+            $route(newRoute) {
+                var categoryId = newRoute.query.mallCategoryId
+                this.categoryId = categoryId
+                if(!categoryId) {
+                    return
+                }
+                for(let i=0;i<this.category.length;i++) {
+                    if(this.category[i].mallCategoryId == categoryId) {
+                        this.sidebarData = this.category[i].bxMallSubDto
+                    }
+                }
+                var siblings = this.$refs.sidebar.children
+                SingleSelection(this.$refs.all, siblings, 'active') //全部按钮选中
+                this._getMallGoods({
+                    categoryId,
+                    categorySubId:null
+                })
             },
             salesFlag(newValue) {
                 if(newValue) {
