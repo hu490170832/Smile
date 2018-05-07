@@ -24,3 +24,4 @@ body {font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-s
 hr {height: .02rem;margin: .1rem 0;border: medium none;border-top: .02rem solid #cacaca;}
 a {color: #25a4bb;text-decoration: none;}
 .clearfix::after {content: '';display: block;width: 0;height: 0;clear: both;}
+img {display: block}
