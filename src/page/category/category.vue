@@ -42,14 +42,14 @@
                     <img src="./images/2@2x.gif" alt="">
                 </div>
                 <div class="scroll-container"  v-else>
-                    <div class="item" v-for="item in goodsList" :key="item.goodsId">
+                    <router-link tag='div' :to="'/goodsDetail?goodsId='+item.goodsId" class="item" v-for="item in goodsList" :key="item.goodsId">
                         <img class="fruit-img" v-lazy="item.image" alt="">
                         <div class="name">{{item.goodsName}}</div>
                         <div class="price">
                             <span class="real">￥{{item.presentPrice}}</span>
                             <span class="del">￥{{item.oriPrice}}</span>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
 
             </cube-scroll>

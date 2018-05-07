@@ -3,13 +3,15 @@
         <div class="title">商品推荐</div>
         <div class="recommend-list">
             <swiper :options='swiperOption'>
-                <swiper-slide class="item" v-for="item in recommend" :key="item.goodsId">
-                    <img :src="item.image" alt="">
-                    <div class="price">
-                        <span class="real-price">￥{{item.price}}</span>
-                        <span class="del-price">￥{{item.mallPrice}}</span>
-                    </div>
-                    <div class="recommend-tips">推荐</div>
+                <swiper-slide v-for="item in recommend" :key="item.goodsId">
+                    <router-link tag='div' class="item" :to="'/goodsDetail?goodsId='+item.goodsId" >
+                        <img v-lazy="item.image" alt="">
+                        <div class="price">
+                            <span class="real-price">￥{{item.price}}</span>
+                            <span class="del-price">￥{{item.mallPrice}}</span>
+                        </div>
+                        <div class="recommend-tips">推荐</div>
+                    </router-link>
                 </swiper-slide>
             </swiper>
         </div>
@@ -20,7 +22,9 @@
                     <div class="desc">{{floorName.floor1}}</div>
                 </div>
                 <div class="floor-goods  clearfix">
-                    <img v-for="item in floor1" :key="item.goodsId" :src="item.image" alt="">
+                    <router-link  v-for="item in floor1" :key="item.goodsId" tag='div' class="item" :to="'/goodsDetail?goodsId='+item.goodsId" >
+                        <img v-lazy="item.image" alt="">
+                    </router-link>
                 </div>
             </div>
             <div class="floor">
@@ -29,7 +33,9 @@
                     <div class="desc">{{floorName.floor2}}</div>
                 </div>
                 <div class="floor-goods  clearfix">
-                    <img v-for="item in floor2" :key="item.goodsId" v-lazy="item.image" alt="">
+                    <router-link  v-for="item in floor2" :key="item.goodsId" tag='div' class="item" :to="'/goodsDetail?goodsId='+item.goodsId" >
+                        <img v-lazy="item.image" alt="">
+                    </router-link>
                 </div>
             </div>
             <div class="floor">
@@ -38,7 +44,9 @@
                     <div class="desc">{{floorName.floor3}}</div>
                 </div>
                 <div class="floor-goods  clearfix">
-                    <img v-for="item in floor3" :key="item.goodsId" :src="item.image" alt="">
+                    <router-link v-for="item in floor3" :key="item.goodsId" tag='div' class="item" :to="'/goodsDetail?goodsId='+item.goodsId" >
+                        <img :src="item.image" alt="">
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -48,7 +56,7 @@
                 <div class="desc">火爆专区</div>
             </div>
             <div class="goods-list">
-                <div v-for="item in hotGoods" :key="item.goodsId" class="item">
+                <router-link tag='div' :to="'/goodsDetail?goodsId='+item.goodsId" v-for="item in hotGoods" :key="item.goodsId" class="item">
                     <div class="img">
                         <img v-lazy="item.image" alt="">
                     </div>
@@ -57,7 +65,7 @@
                         <div class="left">￥{{item.mallPrice}}</div>
                         <div class="right">￥{{item.price}}</div>
                     </div>
-                </div>
+                </router-link>
             </div>
         </div>
     </div>
@@ -90,7 +98,6 @@
         display: flex;
         .item 
             position relative
-            width: 33.33%;
             box-sizing: border-box;
             display: flex;
             flex-shrink: 0;

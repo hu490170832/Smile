@@ -2,7 +2,7 @@
     <div class="gooods-menu">
         <div class="menu-list">
             <router-link :to="'/category?mallCategoryId='+item.mallCategoryId" v-for="item in goodsList" :key="item.mallCategoryId" class="item">
-                <img :src="item.image" alt="">
+                <img v-lazy="item.image" alt="">
                 <div class="title">{{item.mallCategoryName}}</div>
             </router-link>
         </div>

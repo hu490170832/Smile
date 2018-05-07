@@ -31,6 +31,14 @@ export default new Router({
       path: '/personal',
       name: 'Personal',
       component: ()=>import('@/page/personal/personal')
+    },
+    {
+      path: '/goodsDetail',
+      name: 'goodsDetail',
+      meta: {
+        noKeepAlive: true
+      },
+      component: ()=>import('@/page/goodsDetail/goodsDetail')
     }
   ]
 })
