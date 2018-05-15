@@ -149,12 +149,14 @@
         margin-right 10px             
     .floor-list
         .floor-goods
-            img
-                float left
+            .item
                 width 50%
-                border-right 1px solid #ececec
-                border-bottom 1px solid #ececec
-                box-sizing border-box
+                float left
+                img
+                    width 100%
+                    border-right 1px solid #ececec
+                    border-bottom 1px solid #ececec
+                    box-sizing border-box
     .hotGoods
         .goods-list
             display flex
