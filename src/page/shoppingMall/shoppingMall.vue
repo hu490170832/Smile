@@ -1,6 +1,5 @@
 <template>
     <div class="shoppingMall">
-        <search />
         <div class="scroll-container">
             <cube-scroll v-if="hasData">
                 <banner :data='indexData.slides'></banner>
@@ -51,7 +50,7 @@
             Banner,
             goodsMenu,
             recommend,
-            Search
+            Search,
         }
     }
 </script>

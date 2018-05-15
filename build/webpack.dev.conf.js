@@ -10,6 +10,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+const express = require('express')
+const axios = require('axios')
+const app = express()
+var apiRoutes = express.Router()
+app.use('/api', apiRoutes)
+var querystring = require('querystring');
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -22,6 +29,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    before(app) {
+      app.get('/api/search', (req, res) => {
+        axios.post('http://47.104.5.146/baixing/bxAppIndex/searchGoods',
+          querystring.stringify(req.query)
+        )
+        .then((data)=>{
+          res.json(data.data)
+        })
+      })
+    },
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [

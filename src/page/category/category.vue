@@ -1,6 +1,5 @@
 <template>
     <div class="category">
-        <search />
         <div class="top-bar">
             <div class="tab-list" ref="category">
                 <div class="item" 
@@ -192,6 +191,7 @@
 
 <style lang='stylus' scoped>
     .category
+        padding-top 44px
         position absolute
         top 0
         left 0

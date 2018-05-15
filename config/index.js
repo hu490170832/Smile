@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/searchGoods': {
+        target: 'http://47.104.5.146/baixing/bxAppIndex/' ,
+        // pathRewrite: {
+        //   '^/searchGoods' : '/static/mock'
+        // }
+        changeOrigin: true
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

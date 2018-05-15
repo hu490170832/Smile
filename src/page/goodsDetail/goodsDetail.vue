@@ -120,13 +120,6 @@
                     this.showDetail = false
                 }
             }
-        },
-        watch: {
-            goodsDetail() {
-                setTimeout(()=>{
-                    this.$refs.scroll.refresh()
-                },100)
-            }
         }
     }
 </script>

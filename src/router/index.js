@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import shoppingMall from '@/page/shoppingMall/shoppingMall'
-import Cart from '@/page/cart/cart'
-import Personal from '@/page/personal/personal'
-import category from '@/page/category/category'
+// import Cart from '@/page/cart/cart'
+// import Personal from '@/page/personal/personal'
+// import category from '@/page/category/category'
+import searchBar from '@/common/components/search/search'
 
 Vue.use(Router)
 
@@ -16,11 +17,25 @@ export default new Router({
     {
       path: '/shoppingMall',
       name: 'shoppingMall',
-      component: ()=>import('@/page/shoppingMall/shoppingMall')
+      components: {
+        default: ()=>import('@/page/shoppingMall/shoppingMall'),
+        search: searchBar
+      } 
+    },
+    {
+      path: '/searchResult',
+      name: 'searchResult',
+      components: {
+        default: ()=>import('@/page/searchResult/searchResult'),
+        // search: searchBar
+      }
     },
     {
       path: '/category',
-      component: ()=>import('@/page/category/category')
+      components: {
+        default: ()=>import('@/page/category/category'),
+        search: searchBar
+      } 
     },
     {
       path: '/cart',

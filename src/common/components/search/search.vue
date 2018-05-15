@@ -1,21 +1,43 @@
 <template>
     <div class="serach">
         <div class="search-position">
-            <span class="icon iconfont">&#xe633;</span>
+            <span class="icon iconfont" :class="[active ? 'icon-zuojiantou' : 'icon-htmal5icon14']"></span>
         </div>
         <div class="search-input border-bottom-1px">
-            <input type="text" placeholder="查找">
+            <input id="searchText" v-model="searchText" type="text" placeholder="查找">
         </div>
         <div class="serach-button">
             <!-- <button>查找</button> -->
-            <cube-button>查找</cube-button>
+            <router-link to='/searchResult'>
+                <cube-button @click.native="search">查找</cube-button>
+            </router-link>
         </div>
     </div>
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
     export default {
-        
+        data() {
+            return {
+                active: false,
+                searchText:''
+            }
+        },
+        methods: {
+            search() {
+                this.SET_SEARCHTEXT(this.searchText)
+                this.$emit('searchData')
+            },
+            ...mapMutations([
+                'SET_SEARCHTEXT'
+            ])
+        },
+        watch:{
+            $route(newValue) {
+                newValue.name=='searchResult' ? this.active = true : this.active = false
+            }
+        }
     }
 </script>
 
@@ -24,6 +46,10 @@
         border-radius 10px
         padding 8px 28px
     .serach
+        position absolute
+        top 0
+        width 100%
+        z-index 100
         height 44px
         background #d22e7d
         display flex
