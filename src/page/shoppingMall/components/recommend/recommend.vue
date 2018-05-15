@@ -151,7 +151,7 @@
         .floor-goods
             .item
                 width 50%
-                float left
+                float left 
                 img
                     width 100%
                     border-right 1px solid #ececec
