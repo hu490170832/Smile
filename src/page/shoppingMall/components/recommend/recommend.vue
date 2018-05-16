@@ -167,7 +167,7 @@
                 flex-direction column
                 align-items center
                 .img
-                    height 160px
+                    min-height 160px
                     padding 20px
                     box-sizing border-box
                     img

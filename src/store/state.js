@@ -1,5 +1,5 @@
 const state = {
-    searchText: '12'
+    searchText: ''
 }
 
 export default state

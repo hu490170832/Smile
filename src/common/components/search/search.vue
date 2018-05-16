@@ -4,7 +4,7 @@
             <span class="icon iconfont" :class="[active ? 'icon-zuojiantou' : 'icon-htmal5icon14']"></span>
         </div>
         <div class="search-input border-bottom-1px">
-            <input id="searchText" v-model="searchText" type="text" placeholder="查找">
+            <input ref="search" id="searchText" :value="searchText" type="text" placeholder="查找">
         </div>
         <div class="serach-button">
             <!-- <button>查找</button> -->
@@ -16,17 +16,20 @@
 </template>
 
 <script>
-    import {mapMutations} from 'vuex'
+    import {mapMutations,mapState} from 'vuex'
     export default {
         data() {
             return {
                 active: false,
-                searchText:''
             }
+        },
+        computed:{
+            ...mapState(['searchText'])
         },
         methods: {
             search() {
-                this.SET_SEARCHTEXT(this.searchText)
+                var searchText = this.$refs.search.value
+                this.SET_SEARCHTEXT(searchText)
                 this.$emit('searchData')
             },
             ...mapMutations([
