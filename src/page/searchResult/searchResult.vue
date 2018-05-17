@@ -65,7 +65,7 @@
         background #eee
         position absolute
         top 44px 
-        bottom 50px
+        bottom 0px
         width 100%
         padding 0 2px
         box-sizing border-box

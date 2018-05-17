@@ -10,7 +10,10 @@
 		</keep-alive>
 
 		<router-view v-if="$route.meta.noKeepAlive"></router-view>
-    <tab />
+
+    <keep-alive>
+      <router-view name="tab"></router-view>
+    </keep-alive>
   </div>
 </template>
 

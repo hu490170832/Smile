@@ -5,6 +5,7 @@ import Router from 'vue-router'
 // import Personal from '@/page/personal/personal'
 // import category from '@/page/category/category'
 import searchBar from '@/common/components/search/search'
+import Tab from '@/common/components/tab/tab'
 
 Vue.use(Router)
 
@@ -19,7 +20,8 @@ export default new Router({
       name: 'shoppingMall',
       components: {
         default: ()=>import('@/page/shoppingMall/shoppingMall'),
-        search: searchBar
+        search: searchBar,
+        tab: Tab
       } 
     },
     {
@@ -34,18 +36,25 @@ export default new Router({
       path: '/category',
       components: {
         default: ()=>import('@/page/category/category'),
-        search: searchBar
+        search: searchBar,
+        tab: Tab
       } 
     },
     {
       path: '/cart',
       name: 'cart',
-      component: ()=>import('@/page/cart/cart')
+      components: {
+        default: ()=>import('@/page/cart/cart'),
+        tab: Tab
+      } 
     },
     {
       path: '/personal',
       name: 'Personal',
-      component: ()=>import('@/page/personal/personal')
+      components: {
+        default: ()=>import('@/page/personal/personal'),
+        tab: Tab
+      } 
     },
     {
       path: '/goodsDetail',
