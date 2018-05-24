@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cube-ui": "^1.8.0",
+    "good-storage": "^1.0.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vant": "^1.0.8",

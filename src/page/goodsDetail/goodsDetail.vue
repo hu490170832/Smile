@@ -39,7 +39,7 @@
                 <span @click="addNum" class="icon iconfont">&#xe60d;</span>
             </div>
             <div class="right">
-                <div class="btn1 btn">加购物车</div>
+                <div @click="addCart" class="btn1 btn">加购物车</div>
                 <div class="btn2 btn">店铺休息</div>
             </div>
         </div>
@@ -49,6 +49,7 @@
 <script>
     import {getGoodsDetail} from '@/api/goodsDetail'
     import {SingleSelection } from '@/common/js/dom'
+    import {addGoods} from '@/common/js/cache'
     export default {
         data() {
             return {
@@ -95,6 +96,9 @@
                     var that = this
                     for(var i=0;i<imgEl.length;i++) {
                         imgEl[i].onload = function() {
+                            if(!that.$refs.scroll) {
+                                return
+                            }
                             that.$refs.scroll.refresh()
                         }
                     }
@@ -108,6 +112,14 @@
                 if(this.num>1) {
                     this.num--
                 }
+            },
+            addCart() {
+                if(!this.detailData) {
+                    return
+                }
+                var goodsInfo = this.detailData.goodInfo
+                addGoods(goodsInfo)
+                this.$router.push('/cart')
             },
             tabClick(e) {
                 var el = e.target

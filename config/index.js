@@ -11,11 +11,32 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/searchGoods': {
-        target: 'http://47.104.5.146/baixing/bxAppIndex/' ,
-        // pathRewrite: {
-        //   '^/searchGoods' : '/static/mock'
-        // }
+      '/api/index': {
+        target: 'http://47.104.5.146/baixing/bxAppIndex/getHomePageContent' ,
+        pathRewrite: {
+          '^/api/index' : ''
+        },
+        changeOrigin: true
+      },
+      '/api/getCategory': {
+        target: 'http://47.104.5.146/baixing/bxAppIndex/getCategory' ,
+        pathRewrite: {
+          '^/api/getCategory' : ''
+        },
+        changeOrigin: true
+      },
+      '/api/getMallGoods': {
+        target: 'http://47.104.5.146/baixing/bxAppIndex/getMallGoods' ,
+        pathRewrite: {
+          '^/api/getMallGoods' : ''
+        },
+        changeOrigin: true
+      },
+      '/api/getGoodsDetail': {
+        target: 'http://47.104.5.146/baixing/bxAppIndex/getGoodDetailById' ,
+        pathRewrite: {
+          '^/api/getCategory' : ''
+        },
         changeOrigin: true
       }
     },

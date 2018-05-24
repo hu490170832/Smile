@@ -21,9 +21,10 @@ import {
   Slide,
   Scroll,
   createAPI,
-  Toast
+  Toast,
+  Checkbox
 } from 'cube-ui'
-Vue.use(Switch).use(Slide).use(Button).use(Scroll)
+Vue.use(Switch).use(Slide).use(Button).use(Scroll).use(Checkbox)
 createAPI(Vue, Toast, ['click'], true)
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
