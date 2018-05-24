@@ -7,8 +7,8 @@
                     <router-link tag='div' class="item" :to="'/goodsDetail?goodsId='+item.goodsId" >
                         <img v-lazy="item.image" alt="">
                         <div class="price">
-                            <span class="real-price">￥{{item.price}}</span>
-                            <span class="del-price">￥{{item.mallPrice}}</span>
+                            <span class="real-price">￥{{item.price.toFixed(2)}}</span>
+                            <span class="del-price">￥{{item.mallPrice.toFixed(2)}}</span>
                         </div>
                         <div class="recommend-tips">推荐</div>
                     </router-link>
@@ -62,8 +62,8 @@
                     </div>
                     <div class="desc">{{item.name}}</div>
                     <div class="price">
-                        <div class="left">￥{{item.mallPrice}}</div>
-                        <div class="right">￥{{item.price}}</div>
+                        <div class="left">￥{{item.mallPrice.toFixed(2)}}</div>
+                        <div class="right">￥{{item.price.toFixed(2)}}</div>
                     </div>
                 </router-link>
             </div>

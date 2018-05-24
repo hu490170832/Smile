@@ -7,6 +7,7 @@ export function addGoods(goodsInfo) {
   var hasGoods = false
   if(goodsList.length==0) {
     goodsInfo.num = 1
+    goodsInfo.checked = true 
     goodsList.push(goodsInfo)
   }else {
     goodsList.forEach(item => {
@@ -17,12 +18,24 @@ export function addGoods(goodsInfo) {
     });
     if(!hasGoods) {
       goodsInfo.num = 1
+      goodsInfo.checked = true  //默认选择状态
       goodsList.push(goodsInfo)
     }
   }
   storage.set(GOODSLIST_KEY,goodsList)
 }
+export function subGoods(index) {
+  var goodsList = storage.get(GOODSLIST_KEY)
+  goodsList.spilce(index,1)
+  storage.set(GOODSLIST_KEY,goodsList)
+}
+
+export function changeGoodNum(index,value) {
+  var goodsList = storage.get(GOODSLIST_KEY)
+  goodsList[index].num = value
+  storage.set(GOODSLIST_KEY,goodsList)
+}
 
 export function getGoodsList(goodsInfo) {
-  return storage.get(GOODSLIST_KEY)
+  return storage.get(GOODSLIST_KEY) ? storage.get(GOODSLIST_KEY): []
 }

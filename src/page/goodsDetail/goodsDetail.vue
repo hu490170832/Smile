@@ -13,7 +13,7 @@
                 <div class="name">{{detailData.goodInfo.goodsName}}</div>
                 <div class="goods-id"><span class="desc">编号:</span><span class="num">{{detailData.goodInfo.goodsSerialNumber}}</span></div>
                 <div class="price">
-                    <span class="presentPrice">￥{{presentPrice(detailData.goodInfo.presentPrice)}}</span>
+                    <span class="presentPrice">￥{{detailData.goodInfo.presentPrice.toFixed(2)}}</span>
                     <span class="oriPrice">市场价￥ {{detailData.goodInfo.oriPrice}}</span>
                 </div>
             </div>
@@ -71,8 +71,10 @@
             },
             presentPrice(value) {
                 value+=''
-                if(value.indexOf('.00')==-1) {
+                if(value.indexOf('.')==-1) {
                     return value+'.00'
+                }else{
+                    return value
                 }
 
             },
@@ -87,7 +89,7 @@
                     this.hasData = true
                     this.toast.hide()
                     this.refreshScroll()
-                    console.log(res.data)
+                    // console.log(res)
                 })
             },
             refreshScroll() {
@@ -161,10 +163,11 @@
             left 0
             padding-left 10px
             height 100%
-            line-height 30px
+            line-height 40px
             .icon
                 margin-right 4px
                 font-weight 600
+                font-size 16px
             .desc
                 font-size 14px
                 position relative

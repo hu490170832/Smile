@@ -35,7 +35,7 @@ module.exports = {
       '/api/getGoodsDetail': {
         target: 'http://47.104.5.146/baixing/bxAppIndex/getGoodDetailById' ,
         pathRewrite: {
-          '^/api/getCategory' : ''
+          '^/api/getGoodsDetail' : ''
         },
         changeOrigin: true
       }
