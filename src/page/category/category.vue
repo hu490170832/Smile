@@ -138,9 +138,11 @@
         watch:{
             $route(newRoute) {
                 var categoryId = newRoute.query.mallCategoryId
-                this.categoryId = categoryId
-                if(!categoryId) {
+                 if(!categoryId || this.categoryId == categoryId) {   //id相同不再请求数据
                     return
+                }
+                if(categoryId) {
+                    this.categoryId =categoryId
                 }
                 for(let i=0;i<this.category.length;i++) {
                     if(this.category[i].mallCategoryId == categoryId) {
