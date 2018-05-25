@@ -17,7 +17,6 @@
 </template>
 
 <script>
-    import Search from '@/common/components/search/search'
     import Banner from './components/banner/banner'
     import goodsMenu from './components/goods-menu/goods-menu'
     import recommend from './components/recommend/recommend'
@@ -47,14 +46,13 @@
                 this.toast.show()
             },
             ...mapMutations({
-                setRecommend: 'SET_SEARCHTEXT'
+                setRecommend: 'SET_RECOMMENDLIST'
             })
         },
         components: {
             Banner,
             goodsMenu,
             recommend,
-            Search,
         }
     }
 </script>

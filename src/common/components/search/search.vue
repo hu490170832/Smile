@@ -29,12 +29,13 @@
         methods: {
             search() {
                 var searchText = this.$refs.search.value
-                this.SET_SEARCHTEXT(searchText)
+                console.log(searchText)
+                this.setSearchText(searchText)
                 this.$emit('searchData')
             },
-            ...mapMutations([
-                'SET_SEARCHTEXT'
-            ])
+            ...mapMutations({
+                setSearchText: 'SET_SEARCHTEXT'
+            })
         },
         watch:{
             $route(newValue) {
