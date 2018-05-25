@@ -22,6 +22,7 @@
     import goodsMenu from './components/goods-menu/goods-menu'
     import recommend from './components/recommend/recommend'
     import {getIndexData} from '@/api/shoppingMall.js'
+    import {mapMutations} from 'vuex'
     export default {
         data() {
             return {
@@ -33,8 +34,8 @@
             getIndexData().then((res)=>{
                 this.hasData = true
                 this.indexData = res.data
+                this.setRecommend(this.indexData.recommend)
                 this.toast.hide()
-                console.log(res.data)
             })
         },
         methods: {
@@ -44,7 +45,10 @@
                     mask: true
                 })
                 this.toast.show()
-            }
+            },
+            ...mapMutations({
+                setRecommend: 'SET_SEARCHTEXT'
+            })
         },
         components: {
             Banner,

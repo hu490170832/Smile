@@ -1,5 +1,6 @@
 const state = {
-    searchText: ''
+    searchText: '',
+    recommendList:[]
 }
 
 export default state

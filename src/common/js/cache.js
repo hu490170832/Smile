@@ -26,7 +26,7 @@ export function addGoods(goodsInfo) {
 }
 export function subGoods(index) {
   var goodsList = storage.get(GOODSLIST_KEY)
-  goodsList.spilce(index,1)
+  goodsList.splice(index,1)
   storage.set(GOODSLIST_KEY,goodsList)
 }
 
@@ -38,4 +38,8 @@ export function changeGoodNum(index,value) {
 
 export function getGoodsList(goodsInfo) {
   return storage.get(GOODSLIST_KEY) ? storage.get(GOODSLIST_KEY): []
+}
+
+export function clearGoodsList() {
+  storage.remove(GOODSLIST_KEY)
 }
