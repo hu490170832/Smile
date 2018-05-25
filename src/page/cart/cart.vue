@@ -75,7 +75,9 @@
             totalPrice() {
                 var allPrice = 0
                 this.goodsList.forEach((item)=>{
-                    allPrice+=item.presentPrice*item.num
+                    if(item.checked) {
+                        allPrice+=item.presentPrice*item.num
+                    }
                 })
                 return allPrice
             }
