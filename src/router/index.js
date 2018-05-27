@@ -10,6 +10,7 @@ import Tab from '@/common/components/tab/tab'
 Vue.use(Router)
 
 export default new Router({
+  mode:'history',
   routes: [
     {
       path: '/',
