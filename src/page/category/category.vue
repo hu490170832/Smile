@@ -74,9 +74,10 @@
                 goodsList:[],
                 categoryId: 1,
                 defaultParams :{
-                    categoryId: 1,
+                    categoryId: 1,  //category种类
                     page:1,
                     flag:22
+                    // categorySubId: '' siderBar id
                 },
                 salesFlag: false,
                 priceFlag: false,
@@ -156,7 +157,7 @@
                     categorySubId:null
                 })
             },
-            salesFlag(newValue) {
+            salesFlag(newValue) {   //价格switch
                 if(newValue) {
                     Object.assign(this.defaultParams,{
                         flag:31
@@ -172,7 +173,7 @@
                 }
 
             },
-            priceFlag(newValue) {
+            priceFlag(newValue) {  //价格switch
                 if(newValue) {
                     Object.assign(this.defaultParams,{
                         flag:21
