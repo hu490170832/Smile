@@ -11,7 +11,7 @@ Vue.use(VueLazyload)
 fastClick.attach(document.body)
 
 import '@/assets/js/flexible'
-import '@/assets/css/index.stylus'
+import '@/assets/css/index.styl'
 
 import {
   /* eslint-disable no-unused-vars */
