@@ -81,10 +81,23 @@
             back() {
                 this.$router.go(-1)
             },
+            showAlert() {
+                this.$createDialog({
+                    type: 'alert',
+                    title: '没有该商品',
+                    content: '暂时没有该商品',
+                    icon: 'cubeic-alert'
+                }).show()
+            },
             _getGoodsDetail() {
                 var goodId = this.$route.query.goodsId
                 this.showToast()
                 getGoodsDetail(goodId).then((res)=>{
+                    if(!res.state) {
+                        this.showAlert()
+                        return
+                    }
+                    console.log(res)
                     this.detailData = res.data
                     this.hasData = true
                     this.toast.hide()
