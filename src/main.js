@@ -11,7 +11,7 @@ Vue.use(VueLazyload)
 fastClick.attach(document.body)
 
 import '@/assets/js/flexible'
-import '@/assets/css/index.stylus'
+import '@/assets/css/index.styl'
 
 import {
   /* eslint-disable no-unused-vars */
@@ -22,10 +22,12 @@ import {
   Scroll,
   createAPI,
   Toast,
+  Dialog,
   Checkbox
 } from 'cube-ui'
 Vue.use(Switch).use(Slide).use(Button).use(Scroll).use(Checkbox)
 createAPI(Vue, Toast, ['click'], true)
+createAPI(Vue, Dialog, ['click'], true)
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
  
