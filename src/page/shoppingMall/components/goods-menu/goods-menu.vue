@@ -29,12 +29,14 @@
         display flex
         width 98%
         margin 0 auto 
+        flex-wrap wrap
+        padding-bottom 20px
         .item
             width 20%
             display flex
             align-items center
             flex-direction column
-            padding 20px 0
+            padding-top 20px
             img 
                 width 60%
             .title
