@@ -23,9 +23,10 @@ import {
   createAPI,
   Toast,
   Dialog,
-  Checkbox
+  Checkbox,
+  ScrollNavBar
 } from 'cube-ui'
-Vue.use(Switch).use(Slide).use(Button).use(Scroll).use(Checkbox)
+Vue.use(Switch).use(Slide).use(Button).use(Scroll).use(Checkbox).use(ScrollNavBar)
 createAPI(Vue, Toast, ['click'], true)
 createAPI(Vue, Dialog, ['click'], true)
 

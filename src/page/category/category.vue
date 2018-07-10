@@ -2,7 +2,7 @@
     <div class="category">
         <div class="top-bar">
             <!-- <cube-scroll :options = 'options'> -->
-                <div class="tab-list" ref="category">
+                <!-- <div class="tab-list" ref="category">
                     <div class="item" 
                         @click="categoryClick" 
                         :class="{active: item.mallCategoryId==categoryId}"
@@ -10,7 +10,8 @@
                         :key="item.mallCategoryId"
                         :mallCategoryId = 'item.mallCategoryId'
                     >{{item.mallCategoryName}}</div>
-                </div>
+                </div> -->
+                <cube-scroll-nav-bar ref='navBar' :current="current" :labels="labels" @change="changeHandler" />
             <!-- </cube-scroll> -->
         </div>
         <div class="switch">
@@ -86,6 +87,18 @@
                 nogoodsFlag: false,
                 options: {
                     scrollX: true
+                },
+            }
+        },
+        computed: {
+            labels() {
+                return this.category.map(v=>{
+                    return v.mallCategoryName
+                })
+            },
+            current: {
+                get: function() {
+                    return this.labels[0]
                 }
             }
         },
@@ -136,6 +149,10 @@
                 this._getMallGoods({
                     categorySubId
                 })
+            },
+            changeHandler(currentIndex) {
+                var mallCategoryId = this.category[currentIndex].mallCategoryId
+                this.$router.push('/category?mallCategoryId='+mallCategoryId)
             }
         },
         components: {
@@ -192,6 +209,9 @@
                     })
                     this._getMallGoods()
                 }
+            },
+            labels(newValue) {
+                this.$refs.navBar.refresh()
             }
         }
     }
@@ -244,7 +264,7 @@
         .content
             display flex
             position absolute
-            top 127px
+            top 138px
             bottom 0
             width 100%
             .sidebar
