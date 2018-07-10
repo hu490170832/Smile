@@ -4,11 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import fastClick from 'fastclick'
+// import fastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
  
 Vue.use(VueLazyload)
-fastClick.attach(document.body)
+// fastClick.attach(document.body)
 
 import '@/assets/js/flexible'
 import '@/assets/css/index.styl'

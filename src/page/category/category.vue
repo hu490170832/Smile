@@ -1,15 +1,17 @@
 <template>
     <div class="category">
         <div class="top-bar">
-            <div class="tab-list" ref="category">
-                <div class="item" 
-                    @click="categoryClick" 
-                    :class="{active: item.mallCategoryId==categoryId}"
-                     v-for="item in category" 
-                    :key="item.mallCategoryId"
-                    :mallCategoryId = 'item.mallCategoryId'
-                >{{item.mallCategoryName}}</div>
-            </div>
+            <!-- <cube-scroll :options = 'options'> -->
+                <div class="tab-list" ref="category">
+                    <div class="item" 
+                        @click="categoryClick" 
+                        :class="{active: item.mallCategoryId==categoryId}"
+                            v-for="item in category" 
+                        :key="item.mallCategoryId"
+                        :mallCategoryId = 'item.mallCategoryId'
+                    >{{item.mallCategoryName}}</div>
+                </div>
+            <!-- </cube-scroll> -->
         </div>
         <div class="switch">
             <div class="sell-count">
@@ -81,7 +83,10 @@
                 },
                 salesFlag: false,
                 priceFlag: false,
-                nogoodsFlag: false
+                nogoodsFlag: false,
+                options: {
+                    scrollX: true
+                }
             }
         },
         created() {
@@ -202,15 +207,16 @@
         bottom 50px
         overflow hidden
         .tab-list
-            display flex
             height 45px
+            white-space nowrap
             .item
-                width 20%
                 text-align center
                 line-height 45px
                 font-size 14px
                 box-sizing border-box
                 border-bottom 1px solid #ccc
+                padding 0 10px
+                display inline-block
                 &.active
                     border-bottom 2px solid #e2595b
         .switch
