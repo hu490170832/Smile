@@ -12,28 +12,28 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/index': {
-        target: 'http://47.104.5.146/baixing/bxAppIndex/getHomePageContent' ,
+        target: 'http://baixingliangfan.cn/baixing/bxAppIndex/getHomePageContent' ,
         pathRewrite: {
           '^/api/index' : ''
         },
         changeOrigin: true
       },
       '/api/getCategory': {
-        target: 'http://47.104.5.146/baixing/bxAppIndex/getCategory' ,
+        target: 'http://baixingliangfan.cn/baixing/bxAppIndex/getCategory' ,
         pathRewrite: {
           '^/api/getCategory' : ''
         },
         changeOrigin: true
       },
       '/api/getMallGoods': {
-        target: 'http://47.104.5.146/baixing/bxAppIndex/getMallGoods' ,
+        target: 'http://baixingliangfan.cn/baixing/bxAppIndex/getMallGoods' ,
         pathRewrite: {
           '^/api/getMallGoods' : ''
         },
         changeOrigin: true
       },
       '/api/getGoodsDetail': {
-        target: 'http://47.104.5.146/baixing/bxAppIndex/getGoodDetailById' ,
+        target: 'http://baixingliangfan.cn/baixing/bxAppIndex/getGoodDetailById' ,
         pathRewrite: {
           '^/api/getGoodsDetail' : ''
         },

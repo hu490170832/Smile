@@ -1,7 +1,7 @@
 <template>
     <div class="shoppingMall">
         <div class="scroll-container">
-            <cube-scroll v-if="hasData">
+            <cube-scroll v-if="hasData" :data='indexData.hotGoods'>
                 <banner :data='indexData.slides'></banner>
                 <goods-menu :advertesPicture='indexData.advertesPicture' :goodsList='indexData.category'></goods-menu>
                 <recommend :recommend='indexData.recommend'

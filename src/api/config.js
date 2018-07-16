@@ -1,9 +1,10 @@
 import { searchGoods } from "./shoppingMall";
-
+// const baseUrl = 'https://smile.hucheng123.xin:3003'
+const baseUrl = ''
 export default {
-    index: '/api/index',
-    getCategory: '/api/getCategory',
-    getMallGoods: '/api/getMallGoods',
-    getGoodsDetail: '/api/getGoodsDetail',
-    searchGoods: '/api/search'
+    index:  baseUrl + '/api/index',
+    getCategory: baseUrl + '/api/getCategory',
+    getMallGoods: baseUrl + '/api/getMallGoods',
+    getGoodsDetail: baseUrl + '/api/getGoodsDetail',
+    searchGoods: baseUrl + '/api/search'
 }

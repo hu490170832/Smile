@@ -11,7 +11,7 @@
                         :mallCategoryId = 'item.mallCategoryId'
                     >{{item.mallCategoryName}}</div>
                 </div> -->
-                <cube-scroll-nav-bar ref='navBar' :current="current" :labels="labels" @change="changeHandler" />
+                <cube-scroll-nav-bar v-if='labels.length' ref='navBar' :current="current" :labels="labels" @change="changeHandler" />
             <!-- </cube-scroll> -->
         </div>
         <div class="switch">
@@ -79,7 +79,7 @@
                 defaultParams :{
                     categoryId: 1,  //category种类
                     page:1,
-                    flag:22
+                    // flag:22
                     // categorySubId: '' siderBar id
                 },
                 salesFlag: false,
@@ -150,8 +150,13 @@
                     categorySubId
                 })
             },
-            changeHandler(currentIndex) {
-                var mallCategoryId = this.category[currentIndex].mallCategoryId
+            changeHandler(txt) {
+                let mallCategoryId
+                this.category.forEach(v=>{
+                    if(v.mallCategoryName==txt){
+                        mallCategoryId = v.mallCategoryId
+                    }
+                })
                 this.$router.push('/category?mallCategoryId='+mallCategoryId)
             }
         },
@@ -209,9 +214,6 @@
                     })
                     this._getMallGoods()
                 }
-            },
-            labels(newValue) {
-                this.$refs.navBar.refresh()
             }
         }
     }

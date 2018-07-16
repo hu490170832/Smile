@@ -8,6 +8,8 @@ import store from './store'
 import VueLazyload from 'vue-lazyload'
  
 Vue.use(VueLazyload)
+import axios from './api/axios'
+Vue.use(axios)
 // fastClick.attach(document.body)
 
 import '@/assets/js/flexible'

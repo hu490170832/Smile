@@ -152,11 +152,17 @@
             .item
                 width 50%
                 float left 
+                height 0
+                padding-bottom 25%
+                border-right 1px solid #ececec
+                border-bottom 1px solid #ececec
+                box-sizing border-box
+                overflow hidden
+                &:nth-of-type(1)
+                    padding-bottom 50%
                 img
                     width 100%
-                    border-right 1px solid #ececec
-                    border-bottom 1px solid #ececec
-                    box-sizing border-box
+                
     .hotGoods
         .goods-list
             display flex
@@ -167,11 +173,14 @@
                 flex-direction column
                 align-items center
                 .img
-                    min-height 160px
-                    padding 20px
+                    height 0
+                    width 100%
+                    padding-bottom 85%
                     box-sizing border-box
                     img
                         width 80%
+                        display block
+                        margin 0 auto
                 .desc
                     color #f44a60
                     padding 0 5px
