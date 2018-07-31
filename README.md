@@ -18,7 +18,7 @@ npm run build
 npm run build --report
 ```
 
-![主页](/http://smile.hucheng123.xin/smile1.png)
+![主页](http://smile.hucheng123.xin/smile1.png)
 
 
 项目地址:http://smile.hucheng123.xin
