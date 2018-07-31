@@ -1,6 +1,6 @@
 # smile
 
-> A Vue.js project
+> Vue电商项目
 
 ## Build Setup
 
