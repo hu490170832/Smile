@@ -2,25 +2,15 @@ import storage from 'good-storage'
 
 const GOODSLIST_KEY = '__goodslist__'
 
-export function addGoods(goodsInfo) {
+export function addGoods(goodsInfo,count) {
   var goodsList = storage.get(GOODSLIST_KEY,[])
-  var hasGoods = false
-  if(goodsList.length==0) {
-    goodsInfo.num = 1
+  var index = goodsList.findIndex(v=>v.goodsId==goodsInfo.goodsId)
+  if(index<0) {
+    goodsInfo.num = count
     goodsInfo.checked = true 
     goodsList.push(goodsInfo)
   }else {
-    goodsList.forEach(item => {
-      if(item.goodsId==goodsInfo.goodsId){
-        item.num++
-        hasGoods =  true
-      }
-    });
-    if(!hasGoods) {
-      goodsInfo.num = 1
-      goodsInfo.checked = true  //默认选择状态
-      goodsList.push(goodsInfo)
-    }
+    goodsList[index].num+=count
   }
   storage.set(GOODSLIST_KEY,goodsList)
 }

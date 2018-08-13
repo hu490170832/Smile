@@ -133,7 +133,8 @@
                     return
                 }
                 var goodsInfo = this.detailData.goodInfo
-                addGoods(goodsInfo)
+                var count = this.num
+                addGoods(goodsInfo,count)
                 this.$router.push('/cart')
             },
             tabClick(e) {
