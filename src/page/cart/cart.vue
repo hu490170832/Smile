@@ -50,14 +50,14 @@
                     <div class="recommend-title">为您推荐</div>
                     <div class="car-recommend">
                         <div class="recommend-list">
-                            <div class="item" v-for="item in recommendList" :key="item.goodsId">
+                            <router-link :to="'/goodsDetail?goodsId='+item.goodsId" class="item" v-for="item in recommendList" :key="item.goodsId">
                                 <img :src="item.image" alt="">
                                 <div class="name">{{item.goodsName}}</div>
                                 <div class="price">
                                     <span class="present-price">￥{{item.mallPrice.toFixed(2)}}</span>
                                     <div class="orgin-price">￥{{item.price.toFixed(2)}}</div>
                                 </div>
-                            </div>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -132,6 +132,9 @@
         activated() {
             var goodsList = getGoodsList()
             this.goodsList = goodsList
+            this.$nextTick(()=>{
+                this.$refs.scroll.refresh()
+            })
         },
         components: {
             redBtn,
